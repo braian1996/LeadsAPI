@@ -25,36 +25,40 @@ namespace LeadsAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] LeadDTO leadCreacionDTO)
+        public async Task<ActionResult<LeadDTO>> Post([FromBody] LeadDTO leadCreacionDTO)
         {
             try
             {
-                //llamo a la clase Validator para verificar requeridos mediente el uso FluentValidation
+                //  validacion del DTO
                 LeadValidator validator = new LeadValidator();
                 var validationResult = validator.Validate(leadCreacionDTO);
-                //datos requeridos y en el formato determinado
                 if (!validationResult.IsValid)
                 {
                     return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
                 }
-                //llamo a la API externa para obtener los talleres activos y valida si el taller enviado esta dentro de la lista
+
+                // validacion del place_id contra la API externa
                 HashSet<int> activeWorkshops = await _workshopService.GetActiveWorkshops();
                 if (!activeWorkshops.Contains(leadCreacionDTO.PlaceId))
                 {
                     return BadRequest(new { error = "Invalido place_id. El place no esta activo." });
                 }
-                //hago el mapeo del DTO a la entidad Lead y guardo
+
+                // mapeo DTO a Entidad Lead y guardado
                 Lead lead = mapper.Map<Lead>(leadCreacionDTO);
                 _repository.Save(lead);
 
+                // devolucion del turno creado + mensaje (respuesta 201 Created)
                 return Created(string.Empty, new
                 {
                     message = "Su turno fue creado con éxito",
+                    lead
                 });
+
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Ocurrió un error inesperado en la API." + ex });
+                return StatusCode(500, new { error = "Ocurrió un error inesperado en la API. " + ex });
             }
         }
     }

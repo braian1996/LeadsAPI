@@ -10,7 +10,6 @@ namespace LeadsAPI.Services
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IMemoryCache _cache;
         private readonly ILogger<WorkshopService> _logger;
-        private const string CacheKey = "workshops";
 
         public WorkshopService(IHttpClientFactory httpClientFactory, IMemoryCache cache, ILogger<WorkshopService> logger)
         {
