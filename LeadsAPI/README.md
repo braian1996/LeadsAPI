@@ -20,6 +20,41 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**, enfocada en la cr
 - Consulta la API externa para validar que el taller exista y esté activo.
 - Guarda el turno en memoria.
 - Devuelve el turno creado junto con un mensaje de éxito.
+- A continuacion dejo ejemplos de request exitosos:
+
+
+```
+201 Creates
+{
+  "place_id": 2,
+  "appointment_at": "2025-12-10 16:00",
+  "service_type": "rotacion_neumaticos",
+  "contact": {
+    "name": "braian wenger",
+    "email": "bwenger@gmail.com",
+    "phone": "156578016"
+  },
+  "vehicle": {
+    "make": "Toyota",
+    "model": "corolla",
+    "year": 2020,
+    "license_plate": "igc138"
+  }
+}
+```
+```
+201 Creates
+{
+  "place_id": 5,
+  "appointment_at": "2025-03-10 18:00",
+  "service_type": "otro",
+  "contact": {
+    "name": "ramiro peron",
+    "email": "rp@gmail.com",
+    "phone": "155654321"
+  }
+}
+```
 
 
 ### Obtener Todos los Turnos (GET /api/leads)
