@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using LeadsAPI.DTOs;
 using LeadsAPI.Entidades;
 using LeadsAPI.Helpers;
 using LeadsAPI.Repositorios;
 using LeadsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace LeadsAPI.Controllers
 {
@@ -58,8 +56,16 @@ namespace LeadsAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Ocurrió un error inesperado en la API. " + ex });
+                return StatusCode(500, new { error = "Ocurrio un error inesperado en la API. " + ex });
             }
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<LeadDTO>> Get()
+        {
+            var leads = _repository.GetAll();
+            var leadDTO = mapper.Map<IEnumerable<LeadDTO>>(leads);
+            return Ok(leadDTO);
         }
     }
 }

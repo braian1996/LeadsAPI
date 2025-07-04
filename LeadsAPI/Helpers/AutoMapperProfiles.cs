@@ -8,8 +8,13 @@ namespace LeadsAPI.Helpers
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Lead, LeadDTO>();
             CreateMap<LeadDTO, Lead>();
+
+            CreateMap<Contact, ContactDTO>();
             CreateMap<ContactDTO, Contact>();
+
+            CreateMap<Vehicle, VehicleDTO>();
             CreateMap<VehicleDTO, Vehicle>();
         }
     }

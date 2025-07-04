@@ -1,5 +1,7 @@
 ﻿using LeadsAPI.DTOs;
+using LeadsAPI.Settings;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -10,12 +12,15 @@ namespace LeadsAPI.Services
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IMemoryCache _cache;
         private readonly ILogger<WorkshopService> _logger;
+        private const string CacheKey = "workshops";
+        private readonly ExternalService _settings;
 
-        public WorkshopService(IHttpClientFactory httpClientFactory, IMemoryCache cache, ILogger<WorkshopService> logger)
+        public WorkshopService(IHttpClientFactory httpClientFactory, IMemoryCache cache, ILogger<WorkshopService> logger, IOptions<ExternalService> options)
         {
             _httpClientFactory = httpClientFactory;
             _cache = cache;
             _logger = logger;
+            _settings = options.Value;
         }
 
         //Metodo que obtiene una lista de los talleres activos
@@ -23,11 +28,17 @@ namespace LeadsAPI.Services
         {
             try
             {
+                if (_cache.TryGetValue(CacheKey, out HashSet<int>? cachedWorkshops))
+                {
+                    _logger.LogInformation("Cache: talleres activos: {Ids}", string.Join(", ", cachedWorkshops!));
+                    return cachedWorkshops!;
+                }
+
                 HttpClient client = _httpClientFactory.CreateClient();
-                string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes("max@tecnom.com.ar:b0x3sApp"));
+                string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_settings.Username}:{_settings.Password}"));
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);
 
-                HttpResponseMessage response = await client.GetAsync("https://dev.tecnomcrm.com/api/v1/places/workshops");
+                HttpResponseMessage response = await client.GetAsync(_settings.WorkshopsApiUrl);
                 response.EnsureSuccessStatusCode();
 
                 string json = await response.Content.ReadAsStringAsync();
@@ -35,6 +46,10 @@ namespace LeadsAPI.Services
 
                 //obtengo todos los ids y uso el tipo HashSet porque es mas rapido y no permite duplicado como por ahi lo hace List<int>
                 HashSet<int> ids_place = places!.Select(p => p.Id).ToHashSet();
+
+                _logger.LogInformation("Talleres activos obtenidos: {Ids}", string.Join(", ", ids_place));
+
+                _cache.Set(CacheKey, ids_place); 
 
                 return ids_place;
             }

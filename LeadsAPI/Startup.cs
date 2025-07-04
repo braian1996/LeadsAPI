@@ -1,8 +1,6 @@
 ﻿using LeadsAPI.Repositorios;
 using LeadsAPI.Services;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using LeadsAPI.Settings;
 
 
 namespace LeadsAPI
@@ -29,12 +27,17 @@ namespace LeadsAPI
                          NamingStrategy = new Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy()
                      };
                  });
-            services.AddEndpointsApiExplorer();
             services.AddHttpClient();
             services.AddMemoryCache();
+
             services.AddSingleton<WorkshopService>();
             services.AddSingleton<LeadRepository>();
+
+            services.Configure<ExternalService>(Configuration.GetSection("ExternalServices"));
+
+            services.AddEndpointsApiExplorer();
             services.AddAuthorization();
+            
 
         }
 

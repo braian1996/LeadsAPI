@@ -11,5 +11,9 @@ namespace LeadsAPI.Repositorios
             leads.Add(lead);
         }
 
+        public IEnumerable<Lead> GetAll()
+        {
+            return leads;
+        }
     }
 }

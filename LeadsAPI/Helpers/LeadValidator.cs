@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using LeadsAPI.DTOs;
-using LeadsAPI.Entidades;
+
 
 namespace LeadsAPI.Helpers
 {
