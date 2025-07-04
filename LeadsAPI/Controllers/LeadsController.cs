@@ -39,7 +39,7 @@ namespace LeadsAPI.Controllers
                 HashSet<int> activeWorkshops = await _workshopService.GetActiveWorkshops();
                 if (!activeWorkshops.Contains(leadCreacionDTO.PlaceId))
                 {
-                    return BadRequest(new { error = "Invalido place_id. El place no esta activo." });
+                    return BadRequest(new { error = "Invalido PlaceId. El place no esta activo." });
                 }
 
                 // mapeo DTO a Entidad Lead y guardado
