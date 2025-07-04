@@ -37,7 +37,6 @@ namespace LeadsAPI.Services
                 //obtengo todos los ids y uso el tipo HashSet porque es mas rapido y no permite duplicado como por ahi lo hace List<int>
                 HashSet<int> ids_place = places!.Select(p => p.Id).ToHashSet();
 
-                _cache.Set(CacheKey, ids_place);
                 return ids_place;
             }
             catch (HttpRequestException ex)
