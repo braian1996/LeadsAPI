@@ -67,7 +67,7 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**, enfocada en la cr
 - **C#**
 - **FluentValidation**: Para validaciones robustas.
 - **AutoMapper**: Para mapeo entre DTOs y entidades.
-- **IMemoryCache** → Para guardar los talleres activos y evitar llamadas repetidas a la API externa.
+- **IMemoryCache**: Para guardar los talleres activos y evitar llamadas repetidas a la API externa.
 - **IHttpClientFactory**: Para consumir APIs externas.
 
 ---
