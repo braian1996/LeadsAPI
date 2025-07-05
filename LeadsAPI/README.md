@@ -7,7 +7,7 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**.
 ## Detalle General
 
 - Permite registrar turnos a talleres.
-- Valida que el taller exista y esté activo mediante una API externa.
+- Valida que el taller exista y este activo mediante una API externa.
 - Permite obtener todos los turnos registrados.
 
 ---

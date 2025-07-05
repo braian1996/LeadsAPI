@@ -39,7 +39,7 @@ namespace LeadsAPI.Controllers
                 HashSet<int> activeWorkshops = await _workshopService.GetActiveWorkshops();
                 if (!activeWorkshops.Contains(leadCreacionDTO.PlaceId))
                 {
-                    return BadRequest(new { error = "Invalido PlaceId. El place no esta activo." });
+                    return BadRequest(new { error = "Invalido PlaceId. El taller no esta activo o no existe." });
                 }
 
                 // mapeo DTO a Entidad Lead y guardado
@@ -49,7 +49,7 @@ namespace LeadsAPI.Controllers
                 // devolucion del turno creado + mensaje (respuesta 201 Created)
                 return Created(string.Empty, new
                 {
-                    message = "Su turno fue creado con éxito",
+                    message = "Su turno fue creado con exito",
                     lead
                 });
 

@@ -21,13 +21,13 @@ namespace LeadsAPI.Helpers
                 .DependentRules(() =>
                 {
                     RuleFor(x => x.Contact!.Name).NotEmpty().WithMessage("Nombre es requerido.");
-                    RuleFor(x => x.Contact!.Email).EmailAddress().WithMessage("El Email es invalido."); ;
-                    RuleFor(x => x.Contact!.Phone).NotEmpty().WithMessage("El telefono es requerido."); ;
+                    RuleFor(x => x.Contact!.Email).EmailAddress().WithMessage("El Email es invalido.");
+                    RuleFor(x => x.Contact!.Phone).NotEmpty().WithMessage("El telefono es requerido."); 
                 });
 
             When(x => x.Vehicle != null, () =>
             {
-                RuleFor(x => x.Vehicle!.LicensePlate).NotEmpty().WithMessage("La licencia es requerida."); ;
+                RuleFor(x => x.Vehicle!.LicensePlate).NotEmpty().WithMessage("La licencia es requerida.");
             });
         }
     }
