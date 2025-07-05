@@ -44,12 +44,16 @@ namespace LeadsAPI.Controllers
 
                 // mapeo DTO a Entidad Lead y guardado
                 Lead lead = mapper.Map<Lead>(leadCreacionDTO);
-                _repository.Save(lead);
 
-                // devolucion del turno creado + mensaje (respuesta 201 Created)
+                // valido duplicidad de datos y guardo
+                if (!_repository.Save(lead, out string message))
+                {
+                    return BadRequest(new { error = message }); 
+                }
+
                 return Created(string.Empty, new
                 {
-                    message = "Su turno fue creado con exito",
+                    message,
                     lead
                 });
 

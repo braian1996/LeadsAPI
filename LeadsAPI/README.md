@@ -19,6 +19,7 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**.
 - Consulta la API externa para validar que el taller exista y este activo.
 - Guarda el turno en memoria.
 - Devuelve el turno creado junto con un mensaje de exito.
+- Valida que no haya un turno con los mismos datos.
 - A continuacion dejo ejemplos de request exitosos:
 
 

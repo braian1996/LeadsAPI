@@ -38,7 +38,7 @@ namespace LeadsAPI.Services
                 string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_settings.Username}:{_settings.Password}"));
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);
 
-                HttpResponseMessage response = await client.GetAsync(_settings.WorkshopsApiUrl);
+                HttpResponseMessage response = await client.GetAsync(_settings.Url);
                 response.EnsureSuccessStatusCode();
 
                 string json = await response.Content.ReadAsStringAsync();
