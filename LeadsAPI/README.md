@@ -1,14 +1,14 @@
 ﻿# LeadsAPI - Web API para Gestion de Turnos en Talleres
 
-Este proyecto es una Web API desarrollada con **.NET Core 9**..
+Este proyecto es una Web API desarrollada con **.NET Core 9**.
 
 ---
 
 ## Detalle General
 
-- Permite registrar turnos (leads) a talleres.
+- Permite registrar turnos a talleres.
 - Valida que el taller exista y esté activo mediante una API externa.
-- Expone un endpoint para obtener todos los turnos registrados.
+- Permite obtener todos los turnos registrados.
 
 ---
 
