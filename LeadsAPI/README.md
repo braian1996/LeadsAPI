@@ -1,6 +1,6 @@
 ﻿# LeadsAPI - Web API para Gestion de Turnos en Talleres
 
-Este proyecto es una Web API desarrollada con **.NET Core 9**, enfocada en la creacion de turnos para talleres.
+Este proyecto es una Web API desarrollada con **.NET Core 9**..
 
 ---
 
@@ -12,17 +12,19 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**, enfocada en la cr
 
 ---
 
-## Funciones
+## Metodos que expone la API
 
-### Crear Turno (POST /api/leads)
-- Valida todos los datos obligatorios: taller, fecha del turno, tipo de servicio, datos de contacto y patente (si se envía vehículo).
-- Consulta la API externa para validar que el taller exista y esté activo.
+### Crear Turno (POST)
+- Valida todos los datos obligatorios: taller, fecha del turno, tipo de servicio, datos de contacto y patente (si se envia vehiculo).
+- Consulta la API externa para validar que el taller exista y este activo.
 - Guarda el turno en memoria.
 - Devuelve el turno creado junto con un mensaje de exito.
 - A continuacion dejo ejemplos de request exitosos:
 
 
 ```
+https://localhost:7240/api/leads
+
 201 Created
 {
   "place_id": 2,
@@ -56,7 +58,7 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**, enfocada en la cr
 ```
 
 
-### Obtener Todos los Turnos (GET /api/leads)
+### Obtener Todos los Turnos (GET)
 - Devuelve la lista completa de turnos registrados.
 
 ---
@@ -65,9 +67,9 @@ Este proyecto es una Web API desarrollada con **.NET Core 9**, enfocada en la cr
 
 - **.NET Core 9**
 - **C#**
-- **FluentValidation**: Para validaciones robustas.
+- **FluentValidation**: Para validaciones de campos.
 - **AutoMapper**: Para mapeo entre DTOs y entidades.
-- **IMemoryCache**: Para guardar los talleres activos y evitar llamadas repetidas a la API externa.
+- **IMemoryCache**: Para guardar los talleres activos y evitar llamar varias veces a la API externa.
 - **IHttpClientFactory**: Para consumir APIs externas.
 
 ---

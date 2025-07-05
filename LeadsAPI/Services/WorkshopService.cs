@@ -30,7 +30,7 @@ namespace LeadsAPI.Services
             {
                 if (_cache.TryGetValue(CacheKey, out HashSet<int>? cachedWorkshops))
                 {
-                    _logger.LogInformation("Cache: talleres activos: {Ids}", string.Join(", ", cachedWorkshops!));
+                    _logger.LogInformation("Talleres activos: {Ids}", string.Join(", ", cachedWorkshops!));
                     return cachedWorkshops!;
                 }
 

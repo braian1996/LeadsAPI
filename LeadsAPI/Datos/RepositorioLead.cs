@@ -1,8 +1,8 @@
 ﻿using LeadsAPI.Entidades;
 
-namespace LeadsAPI.Repositorios
+namespace LeadsAPI.Datos
 {
-    public class LeadRepository
+    public class RepositorioLead
     {
         private readonly List<Lead> leads = new();
 

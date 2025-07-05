@@ -2,7 +2,7 @@
 using LeadsAPI.DTOs;
 using LeadsAPI.Entidades;
 using LeadsAPI.Helpers;
-using LeadsAPI.Repositorios;
+using LeadsAPI.Datos;
 using LeadsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +13,9 @@ namespace LeadsAPI.Controllers
     public class LeadsController : ControllerBase
     {
         private readonly WorkshopService _workshopService;
-        private readonly LeadRepository _repository;
+        private readonly RepositorioLead _repository;
         private readonly IMapper mapper;
-        public LeadsController(WorkshopService workshopService, LeadRepository repository, IMapper mapper)
+        public LeadsController(WorkshopService workshopService, RepositorioLead repository, IMapper mapper)
         {
             _workshopService = workshopService;
             _repository = repository;

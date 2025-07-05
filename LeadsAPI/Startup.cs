@@ -1,4 +1,4 @@
-﻿using LeadsAPI.Repositorios;
+﻿using LeadsAPI.Datos;
 using LeadsAPI.Services;
 using LeadsAPI.Settings;
 
@@ -31,7 +31,7 @@ namespace LeadsAPI
             services.AddMemoryCache();
 
             services.AddSingleton<WorkshopService>();
-            services.AddSingleton<LeadRepository>();
+            services.AddSingleton<RepositorioLead>();
 
             services.Configure<ExternalService>(Configuration.GetSection("ExternalServices"));
 
