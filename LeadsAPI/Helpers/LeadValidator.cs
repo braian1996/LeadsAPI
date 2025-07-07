@@ -12,7 +12,7 @@ namespace LeadsAPI.Helpers
             RuleFor(x => x.AppointmentAt)
                 .NotEmpty().WithMessage("La fecha de turno es requerida")
                 .Must(date => date > DateTime.UtcNow)
-                .WithMessage("La fecha de turno debe ser en el mayor a la actual");
+                .WithMessage("La fecha de turno debe ser mayor a la actual");
             RuleFor(x => x.ServiceType)
                 .Must(s => new[] { "cambio_aceite", "rotacion_neumaticos", "otro" }.Contains(s));
 

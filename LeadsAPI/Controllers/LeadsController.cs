@@ -27,7 +27,7 @@ namespace LeadsAPI.Controllers
         {
             try
             {
-                //  validacion del DTO
+                //  validacion del DTO de datos requeridos
                 LeadValidator validator = new LeadValidator();
                 var validationResult = validator.Validate(leadCreacionDTO);
                 if (!validationResult.IsValid)
